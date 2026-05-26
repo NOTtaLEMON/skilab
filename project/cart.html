@@ -30,7 +30,7 @@
       .logo {
         font-size: 24px;
         font-weight: bold;
-        color: #6bffff;
+        color: #ff6b6b;
       }
       .nav-links {
         display: flex;
@@ -155,10 +155,10 @@
       <nav>
         <div class="logo">Feast & Flavor</div>
         <ul class="nav-links">
-          <li><a href="index.html#homepage">Our Homepage</a></li>
-          <li><a href="index.html#menu">Our Menu</a></li>
-          <li><a href="index.html#about">About Us</a></li>
-          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </header>
@@ -176,8 +176,12 @@
           <span id="subtotal">&#8377;0.00</span>
         </div>
         <div class="summary-line">
-          <span>Estimated Tax (8%)</span>
+          <span>GST (5%) <small style="color:#999;font-size:12px">· on food orders</small></span>
           <span id="tax">&#8377;0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Delivery Charge</span>
+          <span id="delivery">&#8377;40.00</span>
         </div>
         <div class="summary-line total-line">
           <span>Grand Total</span>
@@ -244,6 +248,10 @@
       }
 
       function changeQty(index, change) {
+        if (change > 0 && cart[index].quantity >= 15) {
+          alert("Maximum 15 of each item allowed.");
+          return;
+        }
         cart[index].quantity += change;
         if (cart[index].quantity <= 0) {
           cart.splice(index, 1);
@@ -262,14 +270,14 @@
       }
 
       function updateTotals(subtotal) {
-        const tax = subtotal * 0.08;
-        const total = subtotal + tax;
+        const tax = subtotal * 0.05;
+        const delivery = subtotal > 0 ? 40 : 0;
+        const total = subtotal + tax + delivery;
 
-        document.getElementById("subtotal").innerText =
-          `₹${subtotal.toFixed(2)}`;
+        document.getElementById("subtotal").innerText = `₹${subtotal.toFixed(2)}`;
         document.getElementById("tax").innerText = `₹${tax.toFixed(2)}`;
-        document.getElementById("grand-total").innerText =
-          `₹${total.toFixed(2)}`;
+        document.getElementById("delivery").innerText = `₹${delivery.toFixed(2)}`;
+        document.getElementById("grand-total").innerText = `₹${total.toFixed(2)}`;
       }
 
       function processCheckout() {

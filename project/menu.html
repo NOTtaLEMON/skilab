@@ -6,7 +6,7 @@
     <title>Feast &amp; Flavor | Menu</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-      :root { --primary-color: #6bffe9; --secondary-color: #2f3e46; --light-bg: #f8f9fa; --white: #ffffff; --shadow: 0 4px 6px rgba(0,0,0,0.1); --border-radius: 8px; }
+      :root { --primary-color: #ff6b6b; --secondary-color: #2f3e46; --light-bg: #f8f9fa; --white: #ffffff; --shadow: 0 4px 6px rgba(0,0,0,0.1); --border-radius: 8px; }
       body { background-color: var(--light-bg); color: var(--secondary-color); }
       header { background-color: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
       nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -56,34 +56,34 @@
     <script>
       const menuData = {
         breakfast: [
-          { id: "b1", name: "Avocado Toast", price: 12.0, desc: "Sourdough, poached egg, chili flakes" },
-          { id: "b2", name: "Buttermilk Pancakes", price: 10.5, desc: "3 fluffy pancakes, maple syrup" },
-          { id: "b3", name: "Eggs Benedict", price: 14.0, desc: "English muffin, hollandaise sauce" },
-          { id: "b4", name: "Belgian Waffles", price: 11.0, desc: "Fresh berries, whipped cream" },
-          { id: "b5", name: "Breakfast Burrito", price: 9.5, desc: "Scrambled eggs, black beans, salsa" },
-          { id: "b6", name: "Acai Berry Bowl", price: 13.0, desc: "Granola, honey, chia seeds" },
-          { id: "b7", name: "Classic Omelette", price: 11.5, desc: "Three eggs, cheese, mushrooms" },
-          { id: "b8", name: "French Toast", price: 10.0, desc: "Brioche bread, cinnamon sugar" },
+          { id: "b1", name: "Masala Dosa", price: 120, desc: "Crispy crepe with spiced potato filling and coconut chutney" },
+          { id: "b2", name: "Idli Sambar", price: 80, desc: "Steamed rice cakes served with lentil soup and chutney" },
+          { id: "b3", name: "Aloo Paratha", price: 100, desc: "Whole wheat flatbread stuffed with spiced mashed potato" },
+          { id: "b4", name: "Poha", price: 70, desc: "Flattened rice with mustard seeds, turmeric and peanuts" },
+          { id: "b5", name: "Upma", price: 75, desc: "Semolina porridge with mixed vegetables and cashews" },
+          { id: "b6", name: "Medu Vada", price: 90, desc: "Crispy lentil doughnuts with coconut chutney and sambar" },
+          { id: "b7", name: "Chole Bhature", price: 130, desc: "Spiced chickpea curry with fluffy deep-fried bread" },
+          { id: "b8", name: "Puri Bhaji", price: 110, desc: "Fried puffed bread served with spiced potato curry" },
         ],
         lunch: [
-          { id: "l1", name: "Wagyu Beef Burger", price: 18.0, desc: "Brioche bun, cheddar, secret sauce" },
-          { id: "l2", name: "Caesar Salad", price: 13.5, desc: "Grilled chicken, parmesan, croutons" },
-          { id: "l3", name: "Margherita Pizza", price: 15.0, desc: "Fresh mozzarella, basil, olive oil" },
-          { id: "l4", name: "Club Sandwich", price: 14.0, desc: "Turkey, bacon, lettuce, tomato" },
-          { id: "l5", name: "Penne Arrabbiata", price: 16.0, desc: "Spicy tomato sauce, garlic" },
-          { id: "l6", name: "Crispy Chicken Wrap", price: 12.5, desc: "Ranch dressing, lettuce, fries" },
-          { id: "l7", name: "Quinoa Buddha Bowl", price: 14.5, desc: "Tahini dressing, roasted chickpeas" },
-          { id: "l8", name: "Tomato Basil Soup", price: 8.5, desc: "Served with grilled cheese sticks" },
+          { id: "l1", name: "Butter Chicken", price: 280, desc: "Tender chicken in rich tomato-butter gravy, served with naan" },
+          { id: "l2", name: "Hyderabadi Biryani", price: 320, desc: "Fragrant basmati rice slow-cooked with spiced chicken" },
+          { id: "l3", name: "Dal Makhani", price: 220, desc: "Slow-cooked black lentils simmered overnight in creamy sauce" },
+          { id: "l4", name: "Paneer Tikka Masala", price: 260, desc: "Grilled cottage cheese in bold spiced tomato gravy" },
+          { id: "l5", name: "Rajma Chawal", price: 180, desc: "Red kidney bean curry served over steamed basmati rice" },
+          { id: "l6", name: "Chicken Tikka", price: 300, desc: "Marinated chicken pieces grilled in a clay tandoor oven" },
+          { id: "l7", name: "Veg Thali", price: 200, desc: "Assorted curries, dal, roti, rice, raita and pickle" },
+          { id: "l8", name: "Sambar Rice", price: 160, desc: "Tangy lentil and vegetable stew ladled over steamed rice" },
         ],
         dinner: [
-          { id: "d1", name: "Filet Mignon", price: 34.0, desc: "Garlic mashed potatoes, asparagus" },
-          { id: "d2", name: "Pan-Seared Salmon", price: 26.0, desc: "Lemon herb rice, green beans" },
-          { id: "d3", name: "Mushroom Risotto", price: 22.0, desc: "Arborio rice, truffle oil, parmesan" },
-          { id: "d4", name: "Lobster Fettuccine", price: 32.0, desc: "Rich creamy garlic seafood sauce" },
-          { id: "d5", name: "BBQ Pork Ribs", price: 28.0, desc: "Slow cooked, coleslaw, cornbread" },
-          { id: "d6", name: "Lamb Chops", price: 31.0, desc: "Mint pesto, roasted sweet potatoes" },
-          { id: "d7", name: "Roasted Duck Breast", price: 29.5, desc: "Orange glaze, wild rice" },
-          { id: "d8", name: "Seafood Paella", price: 35.0, desc: "Saffron rice, shrimp, mussels, calamari" },
+          { id: "d1", name: "Rogan Josh", price: 380, desc: "Slow-braised lamb in aromatic Kashmiri spices and yogurt" },
+          { id: "d2", name: "Prawn Masala", price: 420, desc: "Tiger prawns cooked in spicy coconut-tomato gravy" },
+          { id: "d3", name: "Palak Paneer", price: 260, desc: "Soft cottage cheese cubes in creamy spiced spinach gravy" },
+          { id: "d4", name: "Mutton Biryani", price: 450, desc: "Slow-cooked mutton layered with fragrant saffron rice" },
+          { id: "d5", name: "Tandoori Chicken", price: 350, desc: "Half chicken marinated in spiced yogurt, roasted in tandoor" },
+          { id: "d6", name: "Goan Fish Curry", price: 380, desc: "Fresh catch simmered in tangy Goan coconut curry sauce" },
+          { id: "d7", name: "Kadai Paneer", price: 280, desc: "Cottage cheese with bell peppers in bold kadai masala" },
+          { id: "d8", name: "Garlic Naan + Dal Tadka", price: 200, desc: "Soft garlic flatbread with smoky tempered yellow dal" },
         ],
       };
 
