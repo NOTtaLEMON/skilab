@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feast & Flavor | Menu & Contact</title>
+    <style>
+      /* --- General Reset & Variables --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #2f3e46;
+        --light-bg: #f8f9fa;
+        --white: #ffffff;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --border-radius: 8px;
+      }
+      body {
+        background-color: var(--light-bg);
+        color: var(--secondary-color);
+        scroll-behavior: smooth;
+      }
+
+      /* --- Navigation Bar --- */
+      header {
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+      .cart-badge {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-left: 5px;
+      }
+
+      /* --- Hero/Homepage Section --- */
+      .hero {
+        text-align: center;
+        padding: 80px 20px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      /* --- Menu Section --- */
+      .menu-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: var(--primary-color);
+        margin: 10px auto 0;
+      }
+      .menu-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .menu-box {
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        box-shadow: var(--shadow);
+      }
+      .menu-box h2 {
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--light-bg);
+        padding-bottom: 10px;
+      }
+      .food-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px dashed #e0e0e0;
+      }
+      .food-info h4 {
+        margin-bottom: 5px;
+      }
+      .food-info p {
+        font-size: 14px;
+        color: #666;
+      }
+      .food-price {
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin-right: 10px;
+      }
+      .add-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+      .add-btn:hover {
+        background-color: #ff4747;
+      }
+
+      /* --- Contact & About Sections --- */
+      .about-section {
+        background-color: var(--white);
+        padding: 60px 20px;
+        text-align: center;
+      }
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .contact-container {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+      .contact-form {
+        background-color: var(--white);
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: var(--border-radius);
+        font-size: 16px;
+      }
+      .submit-btn {
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+      .submit-btn:hover {
+        background-color: #1a2529;
+      }
+
+      .branches-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .branch-card {
+        background-color: var(--white);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        border-left: 5px solid var(--primary-color);
+      }
+      .branch-card.main-branch {
+        border-left-color: #2b9348;
+      }
+      .branch-card h3 {
+        margin-bottom: 5px;
+      }
+
+      /* --- Responsive Design --- */
+      @media (max-width: 992px) {
+        .menu-container,
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Feast & Flavor</div>
+        <ul class="nav-links">
+          <li><a href="#homepage">Our Homepage</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li>
+            <a href="cart.html" style="color: var(--primary-color)"
+              >Cart<span id="cart-count" class="cart-badge">0</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="homepage" class="hero">
+      <h1>Welcome to Feast & Flavor</h1>
+      <p>
+        Delicious culinary experiences crafted with love and fresh ingredients.
+      </p>
+    </section>
+
+    <section id="menu" class="menu-section">
+      <h2 class="section-title">Our Menu</h2>
+      <div class="menu-container">
+        <div class="menu-box">
+          <h2>Breakfast</h2>
+          <div id="breakfast-items"></div>
+        </div>
+        <div class="menu-box">
+          <h2>Lunch</h2>
+          <div id="lunch-items"></div>
+        </div>
+        <div class="menu-box">
+          <h2>Dinner</h2>
+          <div id="dinner-items"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-content">
+        <p>
+          Founded in 2020, Feast & Flavor has grown from a small family-owned
+          kitchen to one of the most beloved dining destinations. We specialize
+          in bringing modern culinary twists to classic comforting flavors,
+          sourcing all ingredients from local organic farms.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-container">
+      <div class="contact-form">
+        <h2 style="margin-bottom: 20px">Contact & Feedback</h2>
+        <form
+          id="feedbackForm"
+          onsubmit="
+            alert('Thank you for your message!');
+            return false;
+          "
+        >
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" required placeholder="+1 (555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" required placeholder="john@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Reason for Contact</label>
+            <select>
+              <option>General Inquiry</option>
+              <option>Catering Services</option>
+              <option>Feedback / Complaint</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Feedback / Message</label>
+            <textarea
+              rows="5"
+              required
+              placeholder="Tell us how we can improve or what you loved!"
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Message</button>
+        </form>
+      </div>
+
+      <div class="branches-box">
+        <h2>Our Branches</h2>
+
+        <div class="branch-card main-branch">
+          <h3>📍 Main Branch (Downtown)</h3>
+          <p>123 Culinary Boulevard, Suite A, New York, NY</p>
+          <p><strong>Phone:</strong> (212) 555-0199</p>
+        </div>
+
+        <div class="branch-card">
+          <h3>📍 Brooklyn Outpost</h3>
+          <p>789 Baker Street, Brooklyn, NY</p>
+          <p><strong>Phone:</strong> (718) 555-0144</p>
+        </div>
+
+        <div class="branch-card">
+          <h3>📍 Queens Hub</h3>
+          <p>456 Expressway Avenue, Queens, NY</p>
+          <p><strong>Phone:</strong> (347) 555-0122</p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // EASILY MODIFY MENU ITEMS HERE
+      const menuData = {
+        breakfast: [
+          {
+            id: "b1",
+            name: "Avocado Toast",
+            price: 12.0,
+            desc: "Sourdough, poached egg, chili flakes",
+          },
+          {
+            id: "b2",
+            name: "Buttermilk Pancakes",
+            price: 10.5,
+            desc: "3 fluffy pancakes, maple syrup",
+          },
+          {
+            id: "b3",
+            name: "Eggs Benedict",
+            price: 14.0,
+            desc: "English muffin, hollandaise sauce",
+          },
+          {
+            id: "b4",
+            name: "Belgian Waffles",
+            price: 11.0,
+            desc: "Fresh berries, whipped cream",
+          },
+          {
+            id: "b5",
+            name: "Breakfast Burrito",
+            price: 9.5,
+            desc: "Scrambled eggs, black beans, salsa",
+          },
+          {
+            id: "b6",
+            name: "Acai Berry Bowl",
+            price: 13.0,
+            desc: "Granola, honey, chia seeds",
+          },
+          {
+            id: "b7",
+            name: "Classic Omelette",
+            price: 11.5,
+            desc: "Three eggs, cheese, mushrooms",
+          },
+          {
+            id: "b8",
+            name: "French Toast",
+            price: 10.0,
+            desc: "Brioche bread, cinnamon sugar",
+          },
+        ],
+        lunch: [
+          {
+            id: "l1",
+            name: "Wagyu Beef Burger",
+            price: 18.0,
+            desc: "Brioche bun, cheddar, secret sauce",
+          },
+          {
+            id: "l2",
+            name: "Caesar Salad",
+            price: 13.5,
+            desc: "Grilled chicken, parmesan, croutons",
+          },
+          {
+            id: "l3",
+            name: "Margherita Pizza",
+            price: 15.0,
+            desc: "Fresh mozzarella, basil, olive oil",
+          },
+          {
+            id: "l4",
+            name: "Club Sandwich",
+            price: 14.0,
+            desc: "Turkey, bacon, lettuce, tomato",
+          },
+          {
+            id: "l5",
+            name: "Penne Arrabbiata",
+            price: 16.0,
+            desc: "Spicy tomato sauce, garlic",
+          },
+          {
+            id: "l6",
+            name: "Crispy Chicken Wrap",
+            price: 12.5,
+            desc: "Ranch dressing, lettuce, fries",
+          },
+          {
+            id: "l7",
+            name: "Quinoa Buddha Bowl",
+            price: 14.5,
+            desc: "Tahini dressing, roasted chickpeas",
+          },
+          {
+            id: "l8",
+            name: "Tomato Basil Soup",
+            price: 8.5,
+            desc: "Served with grilled cheese sticks",
+          },
+        ],
+        dinner: [
+          {
+            id: "d1",
+            name: "Filet Mignon",
+            price: 34.0,
+            desc: "Garlic mashed potatoes, asparagus",
+          },
+          {
+            id: "d2",
+            name: "Pan-Seared Salmon",
+            price: 26.0,
+            desc: "Lemon herb rice, green beans",
+          },
+          {
+            id: "d3",
+            name: "Mushroom Risotto",
+            price: 22.0,
+            desc: "Arborio rice, truffle oil, parmesan",
+          },
+          {
+            id: "d4",
+            name: "Lobster Fettuccine",
+            price: 32.0,
+            desc: "Rich creamy garlic seafood sauce",
+          },
+          {
+            id: "d5",
+            name: "BBQ Pork Ribs",
+            price: 28.0,
+            desc: "Slow cooked, coleslaw, cornbread",
+          },
+          {
+            id: "d6",
+            name: "Lamb Chops",
+            price: 31.0,
+            desc: "Mint pesto, roasted sweet potatoes",
+          },
+          {
+            id: "d7",
+            name: "Roasted Duck Breast",
+            price: 29.5,
+            desc: "Orange glaze, wild rice",
+          },
+          {
+            id: "d8",
+            name: "Seafood Paella",
+            price: 35.0,
+            desc: "Saffron rice, shrimp, mussels, calamari",
+          },
+        ],
+      };
+
+      let cart = JSON.parse(localStorage.getItem("restaurantCart")) || [];
+
+      // Function to render menu lists dynamically
+      function renderMenu() {
+        ["breakfast", "lunch", "dinner"].forEach((category) => {
+          const container = document.getElementById(`${category}-items`);
+          container.innerHTML = "";
+          menuData[category].forEach((item) => {
+            container.innerHTML += `
+                        <div class="food-item">
+                            <div class="food-info">
+                                <h4>${item.name}</h4>
+                                <p>${item.desc}</p>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="food-price">$${item.price.toFixed(2)}</span>
+                                <button class="add-btn" onclick="addToCart('${item.id}', '${item.name}', ${item.price})">Add</button>
+                            </div>
+                        </div>
+                    `;
+          });
+        });
+        updateCartBadge();
+      }
+
+      // Add to Cart Controller
+      function addToCart(id, name, price) {
+        const existingItem = cart.find((item) => item.id === id);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, quantity: 1 });
+        }
+        localStorage.setItem("restaurantCart", JSON.stringify(cart));
+        updateCartBadge();
+      }
+
+      function updateCartBadge() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById("cart-count").innerText = count;
+      }
+
+      // Initialize Menu
+      renderMenu();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feast & Flavor | Your Cart</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: #f8f9fa;
+        color: #2f3e46;
+      }
+      header {
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff6b6b;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #2f3e46;
+        font-weight: 600;
+      }
+
+      .cart-wrapper {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+      }
+      @media (max-width: 768px) {
+        .cart-wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .panel {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      h2 {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f8f9fa;
+        padding-bottom: 10px;
+      }
+
+      /* Cart layout UI */
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .quantity-control button {
+        background-color: #eee;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 4px;
+      }
+      .quantity-control span {
+        margin: 0 10px;
+        font-weight: bold;
+      }
+      .remove-btn {
+        color: #ff6b6b;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 15px;
+        font-size: 14px;
+      }
+
+      /* Payment panel UI */
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+      .total-line {
+        font-size: 20px;
+        font-weight: bold;
+        border-top: 2px dashed #eee;
+        padding-top: 15px;
+        margin-top: 15px;
+      }
+      .payment-methods {
+        margin: 25px 0;
+      }
+      .payment-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .payment-option input {
+        cursor: pointer;
+      }
+      .checkout-btn {
+        background-color: #2b9348;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .checkout-btn:hover {
+        background-color: #1e6f31;
+      }
+      .empty-msg {
+        text-align: center;
+        padding: 40px 0;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Feast & Flavor</div>
+        <ul class="nav-links">
+          <li><a href="index.html#homepage">Our Homepage</a></li>
+          <li><a href="index.html#menu">Our Menu</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="cart-wrapper">
+      <div class="panel">
+        <h2>Your Selected Items</h2>
+        <div id="cart-items-container"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Order Summary</h2>
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Estimated Tax (8%)</span>
+          <span id="tax">$0.00</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Grand Total</span>
+          <span id="grand-total">$0.00</span>
+        </div>
+
+        <h3>Payment Options</h3>
+        <div class="payment-methods">
+          <label class="payment-option">
+            <input type="radio" name="payment" checked /> 💳 Credit / Debit Card
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" /> 📱 Mobile UPI / Net Banking
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" /> 💵 Cash On Delivery (COD)
+          </label>
+        </div>
+
+        <button class="checkout-btn" onclick="processCheckout()">
+          Proceed to Secure Payment
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("restaurantCart")) || [];
+
+      function renderCartPage() {
+        const container = document.getElementById("cart-items-container");
+        if (cart.length === 0) {
+          container.innerHTML = `<div class="empty-msg">Your cart is currently empty. Head back to the menu to add some treats!</div>`;
+          updateTotals(0);
+          return;
+        }
+
+        container.innerHTML = "";
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+
+          container.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p style="color: #666; font-size:14px;">$${item.price.toFixed(2)} each</p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <div class="quantity-control">
+                                <button onclick="changeQty(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                            <span style="margin-left: 20px; font-weight: bold; min-width: 60px; text-align: right;">$${itemTotal.toFixed(2)}</span>
+                            <button class="remove-btn" onclick="removeItem(${index})">❌</button>
+                        </div>
+                    </div>
+                `;
+        });
+
+        updateTotals(subtotal);
+      }
+
+      function changeQty(index, change) {
+        cart[index].quantity += change;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        saveAndRefresh();
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        saveAndRefresh();
+      }
+
+      function saveAndRefresh() {
+        localStorage.setItem("restaurantCart", JSON.stringify(cart));
+        renderCartPage();
+      }
+
+      function updateTotals(subtotal) {
+        const tax = subtotal * 0.08;
+        const total = subtotal + tax;
+
+        document.getElementById("subtotal").innerText =
+          `$${subtotal.toFixed(2)}`;
+        document.getElementById("tax").innerText = `$${tax.toFixed(2)}`;
+        document.getElementById("grand-total").innerText =
+          `$${total.toFixed(2)}`;
+      }
+
+      function processCheckout() {
+        if (cart.length === 0) {
+          alert("Your cart is empty! Please add items from the menu first.");
+          return;
+        }
+        alert("Order Placed Successfully! Your delicious meal is on its way.");
+        cart = [];
+        saveAndRefresh();
+        window.location.href = "index.html";
+      }
+
+      // Execute render on load
+      renderCartPage();
+    </script>
+  </body>
+</html>
