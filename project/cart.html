@@ -30,7 +30,7 @@
       .logo {
         font-size: 24px;
         font-weight: bold;
-        color: #ff6b6b;
+        color: #6bffff;
       }
       .nav-links {
         display: flex;
@@ -173,15 +173,15 @@
         <h2>Order Summary</h2>
         <div class="summary-line">
           <span>Subtotal</span>
-          <span id="subtotal">$0.00</span>
+          <span id="subtotal">&#8377;0.00</span>
         </div>
         <div class="summary-line">
           <span>Estimated Tax (8%)</span>
-          <span id="tax">$0.00</span>
+          <span id="tax">&#8377;0.00</span>
         </div>
         <div class="summary-line total-line">
           <span>Grand Total</span>
-          <span id="grand-total">$0.00</span>
+          <span id="grand-total">&#8377;0.00</span>
         </div>
 
         <h3>Payment Options</h3>
@@ -225,7 +225,7 @@
                     <div class="cart-item">
                         <div>
                             <h3>${item.name}</h3>
-                            <p style="color: #666; font-size:14px;">$${item.price.toFixed(2)} each</p>
+                            <p style="color: #666; font-size:14px;">&#8377;${item.price.toFixed(2)} each</p>
                         </div>
                         <div style="display: flex; align-items: center;">
                             <div class="quantity-control">
@@ -233,7 +233,7 @@
                                 <span>${item.quantity}</span>
                                 <button onclick="changeQty(${index}, 1)">+</button>
                             </div>
-                            <span style="margin-left: 20px; font-weight: bold; min-width: 60px; text-align: right;">$${itemTotal.toFixed(2)}</span>
+                            <span style="margin-left: 20px; font-weight: bold; min-width: 60px; text-align: right;">&#8377;${itemTotal.toFixed(2)}</span>
                             <button class="remove-btn" onclick="removeItem(${index})">❌</button>
                         </div>
                     </div>
@@ -266,10 +266,10 @@
         const total = subtotal + tax;
 
         document.getElementById("subtotal").innerText =
-          `$${subtotal.toFixed(2)}`;
-        document.getElementById("tax").innerText = `$${tax.toFixed(2)}`;
+          `₹${subtotal.toFixed(2)}`;
+        document.getElementById("tax").innerText = `₹${tax.toFixed(2)}`;
         document.getElementById("grand-total").innerText =
-          `$${total.toFixed(2)}`;
+          `₹${total.toFixed(2)}`;
       }
 
       function processCheckout() {

@@ -13,7 +13,7 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
       :root {
-        --primary-color: #ff6b6b;
+        --primary-color: #6bffe9;
         --secondary-color: #2f3e46;
         --light-bg: #f8f9fa;
         --white: #ffffff;
@@ -249,10 +249,10 @@
       <nav>
         <div class="logo">Feast & Flavor</div>
         <ul class="nav-links">
-          <li><a href="#homepage">Our Homepage</a></li>
-          <li><a href="#menu">Our Menu</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li>
             <a href="cart.html" style="color: var(--primary-color)"
               >Cart<span id="cart-count" class="cart-badge">0</span></a
@@ -534,7 +534,7 @@
                                 <p>${item.desc}</p>
                             </div>
                             <div style="display: flex; align-items: center;">
-                                <span class="food-price">$${item.price.toFixed(2)}</span>
+                                <span class="food-price">&#8377;${item.price.toFixed(2)}</span>
                                 <button class="add-btn" onclick="addToCart('${item.id}', '${item.name}', ${item.price})">Add</button>
                             </div>
                         </div>
